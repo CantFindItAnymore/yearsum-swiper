@@ -147,14 +147,15 @@ export default {
     background-position center
     text-align left
     .desc
-      position relative
-      top 56%
+      position absolute
+      top 45%
       left 7%
-      transform translateY(-50%)
       line-height 160%
       .anotherBtn
-        height 34px
+        height 50px
         width 133px
+        position relative
+        left 20px
     p:first-child
       padding-left 8px
     .selfBtn

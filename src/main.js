@@ -36,13 +36,13 @@ router.beforeEach((to, from, next) => {
     anotherTell && store.commit('changeAnotherTell', anotherTell)
   }
   // 数据丢失时回到首页
-  // if (to.name === 'Swipe') {
-  //   if (!store.state.data.ID) {
-  //     let originUrl =
-  //       store.anotherTell ? 'http://192.168.5.101:3000/#/' + store.anotherTell : 'http://192.168.5.101:3000/#/'
-  //     location.href = originUrl
-  //   }
-  // }
+  if (to.name === 'Swipe') {
+    if (!store.state.data.ID) {
+      let originUrl =
+        store.anotherTell ? 'http://192.168.5.101:3000/#/' + store.anotherTell : 'http://192.168.5.101:3000/#/'
+      location.href = originUrl
+    }
+  }
   next()
 })
 

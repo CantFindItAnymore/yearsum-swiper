@@ -61,7 +61,7 @@ export default {
     text-align left
     .desc
       position absolute
-      right 10%
+      left 50%
       top 10%
       line-height 160%
       p
