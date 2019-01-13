@@ -80,11 +80,9 @@ export default {
     // 查看他人的报告
     lookAnother () {
       this.$toast.loading(this.loadInfo)
-      this.getData(this.anotherTell, res => {
-        this.$router.push('/swiper')
-      })
+      this._commenQuery(this.anotherTell)
     },
-    // 查询自己的报告
+    // 去查询页
     goSelf () {
       this.$store.commit('changeAnotherTell', '')
     },
@@ -100,18 +98,7 @@ export default {
       // 2.vuex存值
       this.$store.commit('changeTell', this.input)
       // 3.请求数据
-      this.getData(
-        this.input,
-        res => {
-          this.$router.push('/swiper')
-        },
-        res => {
-          this.$toast('该号码不存在！')
-        },
-        err => {
-          this.$toast('请求失败！请稍后重试', err)
-        }
-      )
+      this._commenQuery(this.input)
     },
     _temporaryRepair () {
       let currentPosition, timer
@@ -124,6 +111,21 @@ export default {
         window.scrollTo(0, currentPosition)// 页面向下滚动
         clearInterval(timer)
       }, 1)
+    },
+    _commenQuery (phone) {
+      this.getData(
+        phone,
+        res => {
+          this.$toast.clear()
+          this.$router.push('/swipe')
+        },
+        res => {
+          this.$toast('该号码不存在！')
+        },
+        err => {
+          this.$toast('请求失败！请稍后重试', err)
+        }
+      )
     }
   },
   activated () {
@@ -150,18 +152,11 @@ export default {
       left 7%
       transform translateY(-50%)
       line-height 160%
-      // .delay1
-      //   animation-delay 100ms
-      //   padding-left 8px
-      // .delay2
-      //   animation-delay 200ms
-      // .delay3
-      //   animation-delay 300ms
-      // .delay4
-      //   animation-delay 400ms
       .anotherBtn
         height 34px
         width 133px
+    p:first-child
+      padding-left 8px
     .selfBtn
       position absolute
       bottom 0

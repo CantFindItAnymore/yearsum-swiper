@@ -29,6 +29,23 @@ let commonModel = new CommonModel()
 Vue.prototype.getData = commonModel.getData
 Vue.prototype.getConfig = commonModel.getConfig
 
+router.beforeEach((to, from, next) => {
+  // 他人分享
+  if (to.name === 'Home' && !from.name) {
+    let anotherTell = to.query.phone
+    anotherTell && store.commit('changeAnotherTell', anotherTell)
+  }
+  // 数据丢失时回到首页
+  // if (to.name === 'Swipe') {
+  //   if (!store.state.data.ID) {
+  //     let originUrl =
+  //       store.anotherTell ? 'http://192.168.5.101:3000/#/' + store.anotherTell : 'http://192.168.5.101:3000/#/'
+  //     location.href = originUrl
+  //   }
+  // }
+  next()
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

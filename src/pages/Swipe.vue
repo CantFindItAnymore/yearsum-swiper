@@ -1,43 +1,74 @@
 <template>
-  <div class="swiper" @click='test'>
+  <div class="swipe">
     <van-swipe
       vertical
       :show-indicators='false'
       :loop='false'
+      @change='onChange'
     >
+      <van-swipe-item>
+        <Page1 :index='index'/>
+      </van-swipe-item>
+      <van-swipe-item>
+        <Page2 :index='index'/>
+      </van-swipe-item>
+      <van-swipe-item>
+        <Page3 :index='index'/>
+      </van-swipe-item>
       <van-swipe-item >
-        <img src="../assets/imgs/home.png">
+        <Page4 :index='index'/>
       </van-swipe-item>
-      <van-swipe-item>
-        <img src="../assets/imgs/page1.png">
+      <van-swipe-item >
+        <Page5 :index='index'/>
       </van-swipe-item>
-      <van-swipe-item>
-        <img src="../assets/imgs/page2.png">
-      </van-swipe-item>
-      <van-swipe-item>
-        <img src="../assets/imgs/page3.png">
+      <van-swipe-item >
+        <End :index='index'/>
       </van-swipe-item>
     </van-swipe>
     <img
       class="slideIcon"
       src="../assets/imgs/slideIcon.png"
+      v-if="index !== 5"
     />
   </div>
 </template>
 
 <script>
+import Page1 from '../components/Page1'
+import Page2 from '../components/Page2'
+import Page3 from '../components/Page3'
+import Page4 from '../components/Page4'
+import Page5 from '../components/Page5'
+import End from '../components/End'
+
 export default {
-  name: 'Swiper',
-  methods: {
-    test () {
-      this.$toast('test')
+  name: 'Swipe',
+  data () {
+    return {
+      index: 0
     }
+  },
+  components: {
+    Page1,
+    Page2,
+    Page3,
+    Page4,
+    Page5,
+    End
+  },
+  methods: {
+    onChange (index) {
+      this.index = index
+    }
+  },
+  activated () {
+    this.index = 0
   }
 }
 </script>
 
 <style lang='stylus' scoped>
-  .swiper
+  .swipe
     position fixed
     top 0
     left 0
