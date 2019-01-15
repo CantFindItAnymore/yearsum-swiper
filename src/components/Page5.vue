@@ -3,13 +3,13 @@
     <div class="desc" v-if="this.index === 4">
       <div v-if="data.TDB_NUMBER">
         <p v-if="timer>=1">在团队宝中</p>
-        <p v-if="timer>=5">您送出了<span class="weightContent">{{data.TDB_NUMBER}}</span>次鼓励和分享</p>
+        <p v-if="timer>=5">{{this.isAnother}}送出了<span class="weightContent">{{data.TDB_NUMBER}}</span>次鼓励和分享</p>
         <p v-if="timer>=9">团队的成长</p>
-        <p v-if="timer>=13">离不开您的无私奉献</p>
+        <p v-if="timer>=13">离不开{{this.isAnother}}的无私奉献</p>
       </div>
       <div v-if="!data.TDB_NUMBER">
         <p v-if="timer>=1">在团队宝中</p>
-        <p v-if="timer>=4">您还未参与过团队鼓励和分享</p>
+        <p v-if="timer>=4">{{this.isAnother}}还未参与过团队鼓励和分享</p>
         <p v-if="timer>=9">现在打开团队宝和小伙伴来一次互动吧</p>
       </div>
     </div>
@@ -23,7 +23,8 @@ export default {
     ...mapState(['data'])
   },
   props: {
-    index: Number
+    index: Number,
+    isAnother: String
   },
   data () {
     return {

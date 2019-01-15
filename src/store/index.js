@@ -8,6 +8,11 @@ try {
   localStorage.tell && (defaultTell = localStorage.tell)
 } catch (err) {}
 
+let defaultAnotherTell = ''
+try {
+  sessionStorage.getItem('anotherTell') && (defaultAnotherTell = sessionStorage.getItem('anotherTell'))
+} catch (err) {}
+
 export default new Vuex.Store({
   state: {
     slideDerection: '',
@@ -24,7 +29,7 @@ export default new Vuex.Store({
       TDB_NUMBER: 0,
       TOTAL_PASSENGER: ''
     },
-    anotherTell: ''
+    anotherTell: defaultAnotherTell
   },
   mutations: {
     changeSlide (state, derection) {
@@ -41,6 +46,9 @@ export default new Vuex.Store({
     },
     changeAnotherTell (state, anotherTell) {
       state.anotherTell = anotherTell
+      try {
+        sessionStorage.setItem('anotherTell', anotherTell)
+      } catch (err) {}
     }
   }
 })

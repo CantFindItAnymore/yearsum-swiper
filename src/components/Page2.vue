@@ -1,9 +1,9 @@
 <template>
   <div class="page2">
     <div class="desc" v-if="this.index === 1">
-      <p v-if="timer>=1">您到<span class="weightContent">{{data.CITY}}</span>的次数最多</p>
+      <p v-if="timer>=1">{{this.isAnother}}到<span class="weightContent">{{data.CITY}}</span>的次数最多</p>
       <p v-if="timer>=5">就像是</p>
-      <p v-if="timer>=9">您的第二故乡</p>
+      <p v-if="timer>=9">{{this.isAnother}}的第二故乡</p>
     </div>
   </div>
 </template>
@@ -15,7 +15,8 @@ export default {
     ...mapState(['data'])
   },
   props: {
-    index: Number
+    index: Number,
+    isAnother: String
   },
   data () {
     return {

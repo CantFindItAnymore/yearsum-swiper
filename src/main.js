@@ -38,9 +38,18 @@ router.beforeEach((to, from, next) => {
   // 数据丢失时回到首页
   if (to.name === 'Swipe') {
     if (!store.state.data.ID) {
-      let originUrl =
-        store.anotherTell ? 'http://192.168.5.101:3000/#/' + store.anotherTell : 'http://192.168.5.101:3000/#/'
-      location.href = originUrl
+      // let originUrl = store.anotherTell ? `${location.origin}/#/?phone=${store.anotherTell}` : `${location.origin}/#/`
+      // // console.log(originUrl)
+      // location.href = originUrl
+      if (store.state.anotherTell) {
+        commonModel.getData(
+          store.state.anotherTell
+        )
+      } else {
+        commonModel.getData(
+          store.state.tell
+        )
+      }
     }
   }
   next()

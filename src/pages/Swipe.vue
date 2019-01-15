@@ -7,22 +7,22 @@
       @change='onChange'
     >
       <van-swipe-item>
-        <Page1 :index='index'/>
+        <Page1 :index='index' :isAnother="anotherTell?'TA':'您'" />
       </van-swipe-item>
       <van-swipe-item>
-        <Page2 :index='index'/>
+        <Page2 :index='index' :isAnother="anotherTell?'TA':'您'" />
       </van-swipe-item>
       <van-swipe-item>
-        <Page3 :index='index'/>
+        <Page3 :index='index' :isAnother="anotherTell?'TA':'您'" />
       </van-swipe-item>
       <van-swipe-item >
-        <Page4 :index='index'/>
+        <Page4 :index='index' :isAnother="anotherTell?'TA':'您'" />
       </van-swipe-item>
       <van-swipe-item >
-        <Page5 :index='index'/>
+        <Page5 :index='index' :isAnother="anotherTell?'TA':'您'" />
       </van-swipe-item>
       <van-swipe-item >
-        <End :index='index'/>
+        <End :index='index' />
       </van-swipe-item>
     </van-swipe>
     <img
@@ -40,9 +40,13 @@ import Page3 from '../components/Page3'
 import Page4 from '../components/Page4'
 import Page5 from '../components/Page5'
 import End from '../components/End'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Swipe',
+  computed: {
+    ...mapState(['anotherTell'])
+  },
   data () {
     return {
       index: 0

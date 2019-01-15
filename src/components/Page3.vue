@@ -2,8 +2,8 @@
   <div class="page3">
     <div class="desc" v-if="this.index === 2">
       <p v-if="timer>=1">一共有<span class="weightContent">{{data.TOTAL_PASSENGER}}</span>位乘客</p>
-      <p v-if="timer>=4">对您很满意</p>
-      <p v-if="timer>=8">靠谱的您</p>
+      <p v-if="timer>=4">对{{this.isAnother}}很满意</p>
+      <p v-if="timer>=8">靠谱的{{this.isAnother}}</p>
       <p v-if="timer>=12">让城际出行</p>
       <p v-if="timer>=15">变得越来越美好</p>
     </div>
@@ -17,7 +17,8 @@ export default {
     ...mapState(['data'])
   },
   props: {
-    index: Number
+    index: Number,
+    isAnother: String
   },
   data () {
     return {

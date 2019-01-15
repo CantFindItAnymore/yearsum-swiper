@@ -2,15 +2,19 @@
   <div class="home" id="home">
     <div class="desc">
       <p> 2018</p>
-      <p>您在易来客运</p>
+      <p>{{anotherTell?'TA':'您'}}在易来客运</p>
       <p>度过的</p>
       <p>日日夜夜</p>
-      <img
+      <div
         class="anotherBtn"
         v-if="anotherTell"
         @click="lookAnother"
-        src="../assets/imgs/selfBtn.png"
-      />
+      >
+        <p>立即查看</p>
+        <div class='roll'>
+          <img src="../assets/imgs/roll.png">
+        </div>
+      </div>
     </div>
     <img
       class="selfBtn"
@@ -42,7 +46,7 @@ export default {
   },
   data () {
     return {
-      isAnother: false,
+      // isAnother: false,
       input: '',
       /**
      * 通用加载信息
@@ -97,7 +101,9 @@ export default {
       }
       // 2.vuex存值
       this.$store.commit('changeTell', this.input)
-      // 3.请求数据
+      // 3.清除他人session(不用了，goSelf函数中已经清除了)
+      // sessionStorage.getItem('anotherTell') && sessionStorage.removeItem('anotherTell')
+      // 4.请求数据
       this._commenQuery(this.input)
     },
     _temporaryRepair () {
@@ -152,10 +158,38 @@ export default {
       left 7%
       line-height 160%
       .anotherBtn
-        height 50px
-        width 133px
+        font-family none
+        font-size 30px
+        height 60px
+        width 190px
         position relative
-        left 20px
+        left 6px
+        display flex
+        align-items center
+        p
+          height 30px
+          width 120px
+          line-height 30px
+          padding 5px 10px 0 0
+          text-align left
+          // background teal
+        .roll
+          width 0
+          height 20px
+          overflow hidden
+          position relative
+          // background pink
+          animation buttonShow 2s infinite
+          // background url(../assets/imgs/roll.png)
+          // background-size cover
+          // background-repeat no-repeat
+          // background-position center
+          img
+            height 20px
+            width 60px
+            position absolute
+            left 0
+            top 0
     p:first-child
       padding-left 8px
     .selfBtn
@@ -191,4 +225,9 @@ export default {
         img
           height 18px
           width 37px
+  @keyframes buttonShow
+    0%
+      width 0
+    100%
+      width 60px
 </style>

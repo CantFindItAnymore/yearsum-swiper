@@ -2,7 +2,7 @@
   <div class="page1">
     <div class="desc" v-if="this.index === 0">
       <p v-if="timer>=1">这一年里</p>
-      <p v-if="timer>=5">您一共行驶了<span class="weightContent">{{data.MILEAGE}}</span>公里</p>
+      <p v-if="timer>=5">{{this.isAnother}}一共行驶了<span class="weightContent">{{data.MILEAGE}}</span>公里</p>
       <p v-if="timer>=9">成为了城市里</p>
       <p v-if="timer>=13">一道美丽的风景线</p>
     </div>
@@ -17,7 +17,8 @@ export default {
     ...mapState(['data'])
   },
   props: {
-    index: Number
+    index: Number,
+    isAnother: String
   },
   data () {
     return {
@@ -61,7 +62,7 @@ export default {
     text-align left
     .desc
       position absolute
-      left 50%
+      left 45%
       top 10%
       line-height 160%
       p

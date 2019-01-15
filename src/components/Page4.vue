@@ -8,14 +8,14 @@
         日这一天很平凡
       </p>
       <p v-if="timer>=5">但有位乘客</p>
-      <p v-if="timer>=8">给您留下了这样的评价</p>
+      <p v-if="timer>=8">给{{this.isAnother}}留下了这样的评价</p>
     </div>
     <div class="desc2" v-if="timer>=13 && this.index === 3">
       {{data.COMMENT}}
     </div>
     <div class="desc3" v-if="this.index === 3">
-      <p v-if="timer>=16">您或许已不记得 &nbsp; 但却让人很感动</p>
-      <p v-if="timer>=20">每个温暖的瞬间 &nbsp; 都值得被记录</p>
+      <p v-if="timer>=17">{{this.isAnother}}或许已不记得 &nbsp; 但却让人很感动</p>
+      <p v-if="timer>=21">每个温暖的瞬间 &nbsp; 都值得被记录</p>
     </div>
   </div>
 </template>
@@ -27,7 +27,8 @@ export default {
     ...mapState(['data'])
   },
   props: {
-    index: Number
+    index: Number,
+    isAnother: String
   },
   data () {
     return {

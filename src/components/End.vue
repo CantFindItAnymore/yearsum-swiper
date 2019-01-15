@@ -96,7 +96,7 @@ export default {
       display flex
       justify-content center
       color #fff
-      padding-top 50px
+      padding-top 90px
   @keyframes textShow
     from
       opacity 0
