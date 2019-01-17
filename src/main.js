@@ -30,12 +30,12 @@ Vue.prototype.getData = commonModel.getData
 Vue.prototype.getConfig = commonModel.getConfig
 
 router.beforeEach((to, from, next) => {
-  // 他人分享
   if (to.name === 'Home' && !from.name) {
+    // 他人分享
     let anotherTell = to.query.phone
     anotherTell && store.commit('changeAnotherTell', anotherTell)
   }
-  // 数据丢失时回到首页
+  // 数据丢失时重新请求
   if (to.name === 'Swipe') {
     if (!store.state.data.ID) {
       // let originUrl = store.anotherTell ? `${location.origin}/#/?phone=${store.anotherTell}` : `${location.origin}/#/`

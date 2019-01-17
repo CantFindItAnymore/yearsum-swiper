@@ -18,16 +18,18 @@ export default new Vuex.Store({
     slideDerection: '',
     tell: defaultTell,
     data: {
-      CITY: '',
-      COMMENT: '',
-      DAY_INFO: '',
-      ID: null,
-      MILEAGE: '',
-      MONTH_INFO: '',
-      NAME: '',
-      PHONE: '',
-      TDB_NUMBER: 0,
-      TOTAL_PASSENGER: ''
+      'DAY_INFO': '',
+      'CITY': '',
+      'PHONE': '',
+      'TOTAL_PASSENGER': '',
+      'TDB_NUMBER': 0,
+      'MILEAGE': '',
+      'shareUrl': '',
+      'ID': 0,
+      'MONTH_INFO': '',
+      'COMMENT': '',
+      'shareImg': '',
+      'NAME': ''
     },
     anotherTell: defaultAnotherTell
   },

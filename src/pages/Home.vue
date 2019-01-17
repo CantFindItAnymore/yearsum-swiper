@@ -161,16 +161,16 @@ export default {
         font-family none
         font-size 30px
         height 60px
-        width 190px
+        width 195px
         position relative
         left 6px
         display flex
         align-items center
         p
           height 30px
-          width 120px
+          min-width 125px
           line-height 30px
-          padding 5px 10px 0 0
+          padding 0 10px 0 0
           text-align left
           // background teal
         .roll

@@ -10,7 +10,7 @@ class CommonModel extends Http {
     this.request({
       url: 'jsapiconfig',
       method: 'POST',
-      content: `data={url:'${url}'}`,
+      content: `url=${url}`,
       success: res => {
         callback(res)
       }

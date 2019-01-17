@@ -32,7 +32,7 @@ export default {
   },
   data () {
     return {
-      isplaying: false,
+      isplaying: true,
       playing,
       paused,
       yoyoyo
@@ -40,24 +40,18 @@ export default {
   },
   methods: {
     changeMusic () {
-      this.isplaying = !this.isplaying
-    }
-  },
-  watch: {
-    isplaying () {
-      if (this.isplaying) {
-        document.getElementById('audio').load()
+      if (!this.isplaying) {
+        document.getElementById('audio').play()
       } else {
         document.getElementById('audio').pause()
       }
+      this.isplaying = !this.isplaying
     }
   },
   created () {
     // 配置微信分享接口
-    // console.log(location.origin, location.pathname)
-    let linkUrl = this.data.shareUrl
-    let linkImg = this.data.shareImg
-    this.getConfig(location.origin + location.pathname, res => {
+    let path = encodeURIComponent(location.href.split('#')[0])
+    this.getConfig(path, res => {
       wx.config({
         debug: res.debug,
         appId: res.appId,
@@ -67,24 +61,17 @@ export default {
         jsApiList: res.jsApiList
       })
       wx.ready(function () { // 需在用户可能点击分享按钮前就先调用
-        // IOS audio问题
-        // document.getElementById('suorce').setAttribute('src', yoyoyo)
-        // document.getElementById('audio').load()
-        // 分享配置
-        wx.updateAppMessageShareData({
-          title: '致敬易来客运司机，2018感恩同行', // 分享标题
-          desc: '感谢每一位易来客运司机，让城市变得更有故事有温度，让出行变得更加美好。', // 分享描述
-          link: linkUrl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-          imgUrl: linkImg // 分享图标
-          // success: function () {
-          //   // 设置成功
-          // }
-        })
+        // IOS audio自动播放问题
+        document.getElementById('audio').play()
+        // 分享配置(已转移至swipe路由，因为此时link和imgUrl还未获取到)
+        // wx.updateAppMessageShareData({
+        //   title: '致敬易来客运司机，2018感恩同行', // 分享标题
+        //   desc: '感谢每一位易来客运司机，让城市变得更有故事有温度，让出行变得更加美好。', // 分享描述
+        //   link: linkUrl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        //   imgUrl: linkImg // 分享图标
+        // })
       })
     })
-  },
-  mounted () {
-    this.isplaying = true
   }
 }
 </script>

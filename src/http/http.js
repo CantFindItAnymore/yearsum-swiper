@@ -1,4 +1,7 @@
-const baseUrl = 'https://localhost:8443/'
+// const baseUrl = 'http://192.168.137.202:8080/'
+// const baseUrl = 'https://cswx.easylines.cn/'
+const baseUrl = '/'
+
 class Http {
   request (params) {
     // params包含url(必填)，method，content，success，fail

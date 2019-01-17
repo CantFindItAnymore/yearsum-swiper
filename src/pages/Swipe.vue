@@ -41,11 +41,12 @@ import Page4 from '../components/Page4'
 import Page5 from '../components/Page5'
 import End from '../components/End'
 import { mapState } from 'vuex'
+import wx from 'weixin-js-sdk'
 
 export default {
   name: 'Swipe',
   computed: {
-    ...mapState(['anotherTell'])
+    ...mapState(['data', 'anotherTell'])
   },
   data () {
     return {
@@ -67,6 +68,18 @@ export default {
   },
   activated () {
     this.index = 0
+    if (!this.anotherTell) {
+      // 如果是查看自己的报告就配置微信分享接口
+      let shareData = {
+        title: '致敬易来客运司机，2018感恩同行',
+        desc: '感谢每一位易来客运司机，让城市变得更有故事有温度，让出行变得更加美好。',
+        link: this.data.shareUrl,
+        imgUrl: this.data.shareImg
+      }
+      wx.ready(function () {
+        wx.onMenuShareAppMessage(shareData)
+      })
+    }
   }
 }
 </script>
